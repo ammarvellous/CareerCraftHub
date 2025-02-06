@@ -7,7 +7,8 @@ const Chatbot = () => {
   const [conversation, setConversation] = useState([]);
 
   const handleSend = async () => {
-    const response = await fetch("/api/chatbot/chat", {
+    const endpoint = "/api/chatbot/chat";
+    const response = await fetch(`${process.env.REACT_APP_API_URL}${endpoint}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message }),
