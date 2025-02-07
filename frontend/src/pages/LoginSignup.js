@@ -12,7 +12,6 @@ const LoginSignup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const endpoint = isLogin ? "/api/users/login" : "/api/users/register";
-    console.log(process.env.REACT_APP_API_URL)
     const response = await fetch(`${process.env.REACT_APP_API_URL}${endpoint}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
