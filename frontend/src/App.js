@@ -9,21 +9,26 @@ import CareerGuidance from "./components/CareerGuidance";
 import JobMarketAnalytics from "./components/JobMarketAnalytics";
 import EmotionalIntelligenceHub from "./components/EmotionalIntelligenceHub";
 import ProtectedRoute from './components/ProtectedRoute';
+import UserDetails from "./components/UserDetails";
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<LoginSignup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/Chatbot" element={<Chatbot />} />
-        <Route path="/Footer" element={<Footer />} />
-        <Route path="/Header" element={<Header />} />
-        <Route path="/CareerGuidance" element={<CareerGuidance />} />
-        <Route path="/EmotionalIntelligenceHub" element={<EmotionalIntelligenceHub />} />
-        <Route path="/JobMarketAnalytics" element={<JobMarketAnalytics />} />
-        <Route path="/ProtectedRoute" element={<ProtectedRoute />} />
-      </Routes>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<LoginSignup />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/Chatbot" element={<Chatbot />} />
+          <Route path="/Footer" element={<Footer />} />
+          <Route path="/Header" element={<Header />} />
+          <Route path="/CareerGuidance" element={<CareerGuidance />} />
+          <Route path="/EmotionalIntelligenceHub" element={<EmotionalIntelligenceHub />} />
+          <Route path="/JobMarketAnalytics" element={<JobMarketAnalytics />} />
+          <Route path="/ProtectedRoute" element={<ProtectedRoute />} />
+          <Route path="/career-guidance" element={<CareerGuidance />} />
+          <Route path="/user-details" element={<UserDetails />} />
+        </Routes>
+      </div>
     </Router>
   );
 }
