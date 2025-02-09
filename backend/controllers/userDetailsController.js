@@ -1,20 +1,35 @@
 const User = require("../models/User");
 
 const saveUserDetails = async (req, res) => {
-  const { userId, email, password, careerGoals, pastEducation, name, skills, goals } = req.body;
+  const { userId, email, password, profile } = req.body;
+  const { name, careerGoals, pastEducation, skills, goals } = profile;
   console.log(req.body)
   try {
     let user = await User.findOne({ userId });
     if (!user) {
       // Create a new user if not found
+      user = new User({
+        userId,
+        email,
+        password,
+        profile: {
+          name,
+          careerGoals,
+          pastEducation,
+          skills,
+          goals,
+        },
+      });
+    } else {
+      // Update existing user details
+      if (email) user.email = email;
+      if (password) user.password = password;
+      if (name) user.profile.name = name;
+      if (careerGoals) user.profile.careerGoals = careerGoals;
+      if (pastEducation) user.profile.pastEducation = pastEducation;
+      if (skills) user.profile.skills = skills;
+      if (goals) user.profile.goals = goals;
     }
-
-    // Update existing user details
-    if (careerGoals) user.careerGoals = careerGoals;
-    if (pastEducation) user.pastEducation = pastEducation;
-    if (name) user.profile.name = name;
-    if (skills) user.profile.skills = skills;
-    if (goals) user.profile.goals = goals;
 
     await user.save();
 
