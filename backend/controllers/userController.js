@@ -3,10 +3,19 @@ const User = require("../models/User");
 // Register User
 const registerUser = async (req, res) => {
   const { email, password } = req.body;
+  console.log(req.body)
   try {
-    const user = await User.create({ email, password });
-    res.status(201).json({ message: "User registered", user });
+    let user = await User.findOne({ userId });
+    if (user) {
+      return res.status(400).json({ error: "User already exists" });
+    }
+
+    user = new User({ email, password });
+    await user.save();
+
+    res.status(201).json({ message: "User registered successfully" });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: err.message });
   }
 };
