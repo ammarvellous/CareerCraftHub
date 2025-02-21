@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
     name: String,
     careerGoals: String,
     pastEducation: String,
-    skills: [String],
     goals: [String],
   },
 });

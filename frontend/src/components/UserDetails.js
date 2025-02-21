@@ -22,7 +22,6 @@ const UserDetails = () => {
           name,
           careerGoals,
           pastEducation,
-          skills,
           goals,
         },
       }),

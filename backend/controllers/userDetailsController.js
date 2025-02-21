@@ -2,10 +2,10 @@ const User = require("../models/User");
 
 const saveUserDetails = async (req, res) => {
   const { userId, email, password, profile } = req.body;
-  const { name, careerGoals, pastEducation, skills, goals } = profile;
+  const { name, careerGoals, pastEducation, goals } = profile;
   console.log(req.body)
   try {
-    let user = await User.findOne({ userId });
+    let user = await User.findOne({ email });
     if (!user) {
       // Create a new user if not found
       user = new User({
@@ -16,7 +16,6 @@ const saveUserDetails = async (req, res) => {
           name,
           careerGoals,
           pastEducation,
-          skills,
           goals,
         },
       });
@@ -27,7 +26,6 @@ const saveUserDetails = async (req, res) => {
       if (name) user.profile.name = name;
       if (careerGoals) user.profile.careerGoals = careerGoals;
       if (pastEducation) user.profile.pastEducation = pastEducation;
-      if (skills) user.profile.skills = skills;
       if (goals) user.profile.goals = goals;
     }
 

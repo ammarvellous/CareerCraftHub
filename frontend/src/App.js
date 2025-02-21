@@ -10,6 +10,7 @@ import JobMarketAnalytics from "./components/JobMarketAnalytics";
 import EmotionalIntelligenceHub from "./components/EmotionalIntelligenceHub";
 import ProtectedRoute from './components/ProtectedRoute';
 import UserDetails from "./components/UserDetails";
+import Card from "./components/Card"; // Import the Card component
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
           <Route path="/career-guidance" element={<CareerGuidance />} />
           <Route path="/user-details" element={<UserDetails />} />
         </Routes>
+        <Card title="Chatbot">
+          <Chatbot />
+        </Card>
       </div>
     </Router>
   );

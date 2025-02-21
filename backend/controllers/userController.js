@@ -5,15 +5,16 @@ const registerUser = async (req, res) => {
   const { email, password } = req.body;
   console.log(req.body)
   try {
-    let user = await User.findOne({ userId });
+    let user = await User.findOne({ email });
+
     if (user) {
       return res.status(400).json({ error: "User already exists" });
     }
 
-    user = new User({ email, password });
+    user = new User({email, password });
     await user.save();
-
     res.status(201).json({ message: "User registered successfully" });
+    
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: err.message });
