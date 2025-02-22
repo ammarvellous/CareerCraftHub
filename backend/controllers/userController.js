@@ -1,19 +1,28 @@
+const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+
+// Generate JWT Token
+const generateToken = (user) => {
+  return jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+};
 
 // Register User
 const registerUser = async (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body)
+  console.log(req.body);
   try {
     let user = await User.findOne({ email });
 
     if (user) {
       return res.status(400).json({ error: "User already exists" });
     }
-
-    user = new User({email, password });
+    // userid will be email till @ symbol
+    const userId = email.substring(0, email.indexOf('@'));
+    user = new User({ userId, email, password });
     await user.save();
-    res.status(201).json({ message: "User registered successfully" });
+
+    const token = generateToken(user);
+    res.status(201).json({ message: "User registered successfully", token });
     
   } catch (err) {
     console.log(err);
@@ -27,7 +36,8 @@ const loginUser = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (user && user.password === password) {
-      res.status(200).json({ message: "Login successful", user });
+      const token = generateToken(user);
+      res.status(200).json({ message: "Login successful", token });
     } else {
       res.status(401).json({ error: "Invalid credentials" });
     }

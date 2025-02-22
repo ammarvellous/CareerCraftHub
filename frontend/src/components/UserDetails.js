@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { apiRequest } from "../api";
 
 const UserDetails = () => {
   const [userId, setUserId] = useState("");
@@ -11,10 +12,8 @@ const UserDetails = () => {
   const [goals, setGoals] = useState([]);
 
   const handleSaveDetails = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-details/save-details`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+    try {
+      const data = await apiRequest("/api/user-details/save-details", "POST", {
         userId,
         email,
         password,
@@ -24,13 +23,10 @@ const UserDetails = () => {
           pastEducation,
           goals,
         },
-      }),
-    });
-    const data = await response.json();
-    if (data.message) {
+      });
       alert(data.message);
-    } else {
-      alert("Error saving details");
+    } catch (error) {
+      alert("Error saving details: " + error.message);
     }
   };
 
