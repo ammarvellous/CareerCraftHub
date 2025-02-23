@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Chatbot from "./components/Chatbot";
+
 import LoginSignup from "./pages/LoginSignup";
 import Dashboard from "./pages/Dashboard";
 import CareerGuidance from "./components/CareerGuidance";
@@ -8,7 +8,6 @@ import JobMarketAnalytics from "./components/JobMarketAnalytics";
 import EmotionalIntelligenceHub from "./components/EmotionalIntelligenceHub";
 import ProtectedRoute from './components/ProtectedRoute';
 import UserDetails from "./components/UserDetails";
-import Card from "./components/Card"; // Import the Card component
 
 function App() {
   return (
@@ -22,9 +21,7 @@ function App() {
           <Route path="/job-market-analytics" element={<ProtectedRoute><JobMarketAnalytics /></ProtectedRoute>} />
           <Route path="/user-details" element={<ProtectedRoute><UserDetails /></ProtectedRoute>} />
         </Routes>
-        <Card title="Chatbot">
-          <Chatbot />
-        </Card>
+        
       </div>
     </Router>
   );

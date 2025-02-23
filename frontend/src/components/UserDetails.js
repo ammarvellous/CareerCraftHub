@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { apiRequest } from "../api";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+// import CareerGuidance from "../components/CareerGuidance";
+// import JobMarketAnalytics from "../components/JobMarketAnalytics";
+// import EmotionalIntelligenceHub from "../components/EmotionalIntelligenceHub";
 
 const UserDetails = () => {
   const [userId, setUserId] = useState("");
@@ -31,13 +36,13 @@ const UserDetails = () => {
   };
 
   const containerStyle = {
-    maxWidth: "400px",
+    // maxWidth: "400px",
     width: "100%",
     background: "#fff",
-    padding: "25px 30px",
-    borderRadius: "5px",
+    // padding: "25px 30px",
+    // borderRadius: "5px",
     boxShadow: "0 5px 10px rgba(0, 0, 0, 0.15)",
-    margin: "20px auto",
+    // margin: "20px auto",
   };
 
   const titleStyle = {
@@ -98,6 +103,7 @@ const UserDetails = () => {
 
   return (
     <div style={containerStyle}>
+      <Header />
       <div style={titleStyle}>User Details</div>
       <div className="content">
         <form>
@@ -188,6 +194,7 @@ const UserDetails = () => {
           </div>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };
